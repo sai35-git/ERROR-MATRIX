@@ -53,7 +53,7 @@
 
         /* ==========================================================================
            LIVE LOGIN PAGE STYLES (ERROR MATRIX)
-           ========================================================================= */
+           ========================================================================== */
         #login-screen {
             width: 100vw;
             height: 100vh;
@@ -174,9 +174,9 @@
 
         /* ==========================================================================
            DASHBOARD SCREEN STYLES
-           ========================================================================= */
+           ========================================================================== */
         #dashboard-screen {
-            display: flex; 
+            display: none; 
             flex-direction: row;
             height: 100vh;
             width: 100vw;
@@ -190,14 +190,69 @@
             flex-direction: column;
             padding: 1.5rem;
             justify-content: space-between;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: transform 0.3s ease, margin-left 0.3s ease, background-color 0.3s, border-color 0.3s;
         }
 
-        .sidebar-header-row {
+        /* --- RESPONSIVE SIDEBAR TOGGLE BUTTON STYLES --- */
+        .menu-toggle-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            background-color: var(--card-bg);
+            transition: all 0.2s;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        .menu-toggle-btn:hover {
+            background-color: var(--bg-primary);
+        }
+
+        .sidebar-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar-close-btn:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+        }
+
+        /* Desktop Hiding Switch */
+        @media (min-width: 769px) {
+            .sidebar.closed {
+                margin-left: -280px;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        /* Mobile Responsive Sliding Overlay Drawer */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                z-index: 9999;
+                transform: translateX(-100%);
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
         }
 
         .brand-logo {
@@ -218,21 +273,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .sidebar-close-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.35rem;
-            cursor: pointer;
-            color: var(--text-muted);
-            line-height: 1;
-            padding: 4px;
-        }
-
-        .sidebar-close-btn:hover {
-            color: var(--text-main);
         }
 
         .sidebar-section-title {
@@ -394,6 +434,7 @@
 
         .left-column, .right-column { display: flex; flex-direction: column; gap: 2rem; }
         .section-box { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem; transition: background-color 0.3s, border-color 0.3s; }
+        .section-box { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem; transition: background-color 0.3s, border-color 0.3s; }
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
         .section-header h3 { font-size: 1.1rem; font-weight: 600; }
         
@@ -493,7 +534,7 @@
         .priority-card.p3 { border-left-color: var(--low); }
         .priority-count { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
         .priority-title { font-size: 0.85rem; font-weight: 600; }
-        .priority-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+        .priority-desc { font-size: 0.7 outer rem; color: var(--text-muted); margin-top: 0.15rem; }
 
         /* Insights Panel Boxes */
         .alert-box { padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.4; transition: all 0.3s ease; }
@@ -596,7 +637,7 @@
 
         /* ==========================================================================
            MODAL WINDOW INTERFACES & CONFIGURATIONS
-           ========================================================================= */
+           ========================================================================== */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -669,71 +710,6 @@
         .chart-label-row { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; }
         .chart-bar-bg { background-color: var(--bg-primary); height: 12px; border-radius: 6px; width: 100%; overflow: hidden; border: 1px solid var(--border-color); }
         .chart-bar-fill { height: 100%; width: 0%; transition: width 0.5s ease-out; }
-
-        /* ==========================================================================
-           MOBILE RESPONSIVENESS INTERFACE PATCH
-           ========================================================================= */
-        .menu-toggle-hamburger {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            #dashboard-screen {
-                position: relative;
-            }
-
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: -280px;
-                height: 100vh;
-                z-index: 9999;
-                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
-                transition: left 0.3s ease-in-out;
-            }
-
-            .sidebar.mobile-open {
-                left: 0;
-            }
-
-            .sidebar-close-btn {
-                display: block;
-            }
-
-            .top-header {
-                padding: 1rem 1.5rem;
-                justify-content: flex-start;
-                gap: 15px;
-            }
-
-            .header-actions {
-                margin-left: auto;
-            }
-
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .columns-layout {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .menu-toggle-hamburger {
-                display: block;
-                font-size: 1.6rem;
-                background: none;
-                border: none;
-                cursor: pointer;
-                color: var(--text-main);
-                padding-right: 5px;
-            }
-            
-            .profile-info {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
@@ -771,14 +747,14 @@
 
     <div id="dashboard-screen">
         
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebarMenu">
             <div>
-                <div class="sidebar-header-row">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <div class="brand-logo" style="cursor: pointer;" onclick="switchDashboardView('overview')">
                         <span class="brand-icon">🪲</span>
                         <span>ERROR MATRIX</span>
                     </div>
-                    <button class="sidebar-close-btn" onclick="toggleMobileSidebar(event)">✕</button>
+                    <button class="sidebar-close-btn" onclick="toggleSidebar()">✕</button>
                 </div>
                 
                 <div class="sidebar-section-title">System Views</div>
@@ -808,10 +784,12 @@
 
         <main class="main-wrapper">
             <header class="top-header">
-                <button class="menu-toggle-hamburger" onclick="toggleMobileSidebar(event)">☰</button>
-                <div class="header-title">
-                    <h1 id="main-view-heading">Overview</h1>
-                    <p id="main-view-subheading">Monitor, prioritize, and resolve product issues before users feel them.</p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button class="menu-toggle-btn" onclick="toggleSidebar()">☰</button>
+                    <div class="header-title">
+                        <h1 id="main-view-heading">Overview</h1>
+                        <p id="main-view-subheading">Monitor, prioritize, and resolve product issues before users feel them.</p>
+                    </div>
                 </div>
                 <div class="header-actions">
                     <button class="theme-toggle-btn" onclick="toggleModal('notifications-feed-modal', true)">
@@ -869,8 +847,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="bug-list" id="bugs-container">
-                                    </div>
+                                <div class="bug-list" id="bugs-container"></div>
                             </div>
 
                             <div class="section-box">
@@ -907,16 +884,14 @@
                                 <div class="section-header">
                                     <h3>Insights Panel</h3>
                                 </div>
-                                <div id="insights-content-wrapper">
-                                    </div>
+                                <div id="insights-content-wrapper"></div>
                             </div>
 
                             <div class="section-box">
                                 <div class="section-header">
                                     <h3>Alert Center</h3>
                                 </div>
-                                <div class="alert-center-card" id="alert-feed-container">
-                                    </div>
+                                <div class="alert-center-card" id="alert-feed-container"></div>
                             </div>
                         </div>
                     </div>
@@ -936,8 +911,7 @@
                                     <th>Status Flag</th>
                                 </tr>
                             </thead>
-                            <tbody id="live-activity-log-rows">
-                                </tbody>
+                            <tbody id="live-activity-log-rows"></tbody>
                         </table>
                     </div>
                 </div>
@@ -956,8 +930,7 @@
                                     <th>Operational State</th>
                                 </tr>
                             </thead>
-                            <tbody id="active-users-rows">
-                                </tbody>
+                            <tbody id="active-users-rows"></tbody>
                         </table>
                     </div>
                 </div>
@@ -976,8 +949,7 @@
                 <h3>🔔 Global Network Matrix Alert Center</h3>
                 <button class="modal-close-btn" onclick="toggleModal('notifications-feed-modal', false)">✕</button>
             </div>
-            <div class="alert-center-card" id="modal-alert-feed-container" style="max-height: 450px;">
-                </div>
+            <div class="alert-center-card" id="modal-alert-feed-container" style="max-height: 450px;"></div>
             <div class="modal-footer-btns">
                 <button type="button" class="btn-primary" onclick="toggleModal('notifications-feed-modal', false)">Dismiss Control Feed</button>
             </div>
@@ -1148,7 +1120,7 @@
                 <button class="modal-close-btn" onclick="toggleModal('statistics-chart-modal', false)">✕</button>
             </div>
             
-           <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
                 Graphical density visualization mapping active threat indicators:
             </p>
 
@@ -1189,6 +1161,18 @@
         let totalErrorsCount = 0;
 
         let bugsArrayData = [];
+
+        // --- NEW RESPONSIVE SIDEBAR TOGGLE MECHANISM ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarMenu');
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('open');
+                sidebar.classList.remove('closed');
+            } else {
+                sidebar.classList.toggle('closed');
+                sidebar.classList.remove('open');
+            }
+        }
 
         // --- THEME SWITCHER LOGIC ---
         function toggleThemeMode() {
@@ -1393,6 +1377,11 @@
                 headerTitle.innerText = "Active Sessions";
                 headerSub.innerText = "Security clearance check on internal personnel operating the cluster framework.";
             }
+
+            // Auto-collapse navigation panel on mobile interactions
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebarMenu').classList.remove('open');
+            }
         }
 
         // --- DYNAMIC LIVE LOG FEEDER ---
@@ -1426,7 +1415,7 @@
         for(let initialT = 0; initialT < 10; initialT++) { fireActiveSystemLogLine(); }
         setInterval(fireActiveSystemLogLine, 4000);
 
-        // --- GLOBAL ALERT CENTER DUAL INJECTION SYSTEM ---
+       // --- GLOBAL ALERT CENTER DUAL INJECTION SYSTEM ---
         function pushAlertToCenter(title, description, cssClass, iconEmoji) {
             const feeds = [
                 document.getElementById('alert-feed-container'),
@@ -1653,6 +1642,10 @@
             setTimeout(() => {
                 loginScreen.style.display = 'none';
                 document.getElementById('dashboard-screen').style.display = 'flex';
+                // Sync screen bounds check to close menu initially on mobile viewports
+                if(window.innerWidth <= 768) {
+                    document.getElementById('sidebarMenu').classList.remove('open');
+                }
             }, 500);
         }
 
@@ -1670,31 +1663,6 @@
                 document.getElementById('dashboard-screen').style.display = 'none';
             }, 50);
         }
-
-        // --- MOBILE SIDEBAR DRAWER DRIVER ENGINE ---
-        function toggleMobileSidebar(event) {
-            if (event) event.stopPropagation();
-            const sidebar = document.querySelector('.sidebar');
-            if (sidebar) sidebar.classList.toggle('mobile-open');
-        }
-
-        document.addEventListener('click', (event) => {
-            const sidebar = document.querySelector('.sidebar');
-            const hamburger = document.querySelector('.menu-toggle-hamburger');
-            
-            if (sidebar && sidebar.classList.contains('mobile-open')) {
-                if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-                    sidebar.classList.remove('mobile-open');
-                }
-            }
-        });
-
-        document.querySelectorAll('.sidebar .nav-links .nav-item a').forEach(link => {
-            link.addEventListener('click', () => {
-                const sidebar = document.querySelector('.sidebar');
-                if (sidebar) sidebar.classList.remove('mobile-open');
-            });
-        });
     </script>
 </body>
-</html> 
+</html>
