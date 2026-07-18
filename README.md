@@ -75,15 +75,6 @@ Error Matrix is engineered with a clean, low-overhead file deployment structure:
 | `package.json` | System manifest defining configurations and backend platform deployment hooks |
 | `README.md` | Core framework documentation and deployment index guide (This file) |
 
-## Contributing
-Issues, pull requests, and feedback are welcome.
-
-* [Contributing guide](CONTRIBUTING.md)
-* [Security policy](SECURITY.md)
-
-## License
-Licensed under the MIT License.
-
 ## 🔒 Detailed Clearance & Permissions Matrix
 The access control system dynamically alters the UI visibility and operation permissions based on the chosen security cryptokey clearance tier upon initialization:
 
@@ -92,19 +83,3 @@ The access control system dynamically alters the UI visibility and operation per
 | `Admin` | Full repository view, system activity logs, network user panel, and global metric summaries. | Full CRUD access: **Create**, **Edit**, **Solve**, and **Delete** any database ticket. |
 | `Tester` | Target bug repository index, active sprint metrics, and the workflow kanban board overlay. | **Create** new tickets; execute inline **Solve** routine transitions. Purge/Delete actions are locked. |
 | `Developer` | Technical scope diagnostics, system analytics chart graphs, and real-time operations logging. | Inline **Edit** modifications and diagnostic log appending workflows. |
-
-## ⚡ Underlying Performance Mechanics
-To keep the application running inside a single-file zero-dependency footprint without performance degradation, the following engine pipelines were built:
-
-* **Double-Buffered Canvas Stream:** The background matrix visual utilizes a decoupled `requestAnimationFrame` graphics loop. It calculates font drop positions dynamically relative to the window width, ensuring zero frame drops or CPU spiking even on legacy hardware nodes.
-* **Auto-Pruning Log Buffer:** The real-time operations logging table uses an automated shift-and-drop pruning logic. When live diagnostic traces exceed **10 concurrent rows**, the oldest element is systematically dropped from the DOM tree to prevent memory leaks during extended tracking sessions.
-* **Optimized CSS Theme Variables:** Layout shifting does not trigger standard repaint lag. By binding all semantic layout colors directly to native CSS `:root` and `.dark-mode` property scopes, theme transitions happen instantly at the GPU rendering layer.
-
-## 🛠️ Common Troubleshooting & Edge Cases
-
-### Encountering CORS Blocks on Local Runs
-If your browser blocks the frontend from updating metrics when running outside of the production Render container, it is usually because the document was launched directly from the file system (`file:///`).
-* **Fix:** Ensure you serve the repository using a local web server instance (`npx serve .` or `python -m http.server`) as detailed in the **Quick Start** section.
-
-### Sync Latency Actions
-The monitoring dashboard uses a live local state fallback system. If the remote MongoDB ingestion layer goes offline, the frontend safely handles the disconnection gracefully using structured `try/catch` runtime locks and notifies the user via an active warning banner in the console logs instead of crashing the shell wrapper.
