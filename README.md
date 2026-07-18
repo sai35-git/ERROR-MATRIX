@@ -107,4 +107,4 @@ If your browser blocks the frontend from updating metrics when running outside o
 * **Fix:** Ensure you serve the repository using a local web server instance (`npx serve .` or `python -m http.server`) as detailed in the **Quick Start** section.
 
 ### Sync Latency Actions
-The monitoring dashboard uses a live local state fallback system. If the remote MongoDB ingestion layer goes offline, the frontend safely handles the disconnection gracefully using structured `try/catch` runtime locks and notifies the user via an active warning banner in the console logs instead of crashing the shell wrapper.​
+The monitoring dashboard uses a live local state fallback system. If the remote MongoDB ingestion layer goes offline, the frontend safely handles the disconnection gracefully using structured `try/catch` runtime locks and notifies the user via an active warning banner in the console logs instead of crashing the shell wrapper.
