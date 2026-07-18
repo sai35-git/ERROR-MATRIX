@@ -66,19 +66,25 @@ init({
   host: "[https://error-matrix-2-0o5p.onrender.com/api/bugs](https://error-matrix-2-0o5p.onrender.com/api/bugs)",
 })
 That mounts the capture launcher so users can submit screenshot or screen recording bug reports without leaving your product.
-​Monorepo Overview
-​Error Matrix is engineered with a clean, low-overhead file deployment structure:
-PathPurpose
-index.htmlUnified core application page containing all structure elements, responsive variables, and logic routines
-package.jsonSystem manifest defining configurations and backend platform deployment hooks
-README.mdCore framework documentation and deployment index guide (This file)
-Contributing
-​Issues, pull requests, and feedback are welcome.
-​Contributing guide
-​Security policy
-​License
-​Licensed under the MIT License.
- ## 🔒 Detailed Clearance & Permissions Matrix
+## Monorepo Overview
+Error Matrix is engineered with a clean, low-overhead file deployment structure:
+
+| Path | Purpose |
+| :--- | :--- |
+| `index.html` | Unified core application page containing all structure elements, responsive variables, and logic routines |
+| `package.json` | System manifest defining configurations and backend platform deployment hooks |
+| `README.md` | Core framework documentation and deployment index guide (This file) |
+
+## Contributing
+Issues, pull requests, and feedback are welcome.
+
+* [Contributing guide](CONTRIBUTING.md)
+* [Security policy](SECURITY.md)
+
+## License
+Licensed under the MIT License.
+
+## 🔒 Detailed Clearance & Permissions Matrix
 The access control system dynamically alters the UI visibility and operation permissions based on the chosen security cryptokey clearance tier upon initialization:
 
 | Clearance Tier | Dashboard View Scope | Permitted Mutation Operations |
@@ -101,5 +107,4 @@ If your browser blocks the frontend from updating metrics when running outside o
 * **Fix:** Ensure you serve the repository using a local web server instance (`npx serve .` or `python -m http.server`) as detailed in the **Quick Start** section.
 
 ### Sync Latency Actions
-The monitoring dashboard uses a live local state fallback system. If the remote MongoDB ingestion layer goes offline, the frontend safely handles the disconnection gracefully using structured `try/catch` runtime locks and notifies the user via an active warning banner in the console logs instead of crashing the shell wrapper.
-​
+The monitoring dashboard uses a live local state fallback system. If the remote MongoDB ingestion layer goes offline, the frontend safely handles the disconnection gracefully using structured `try/catch` runtime locks and notifies the user via an active warning banner in the console logs instead of crashing the shell wrapper.​
